@@ -1,4 +1,4 @@
-package com.habittracker.habit.model;
+package com.habittracker.habit.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,7 +27,13 @@ public class Habit {
 
     private String description;
 
-    private boolean active;
-
+    private boolean active=true;
+    private String frequency;
+    private String reminderTime;
     private LocalDate startDate;
+    private LocalDate endDate;
+
+    private Integer streakCount =0;
+    private Integer completionCount=0;
+
 }

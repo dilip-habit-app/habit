@@ -1,6 +1,6 @@
 package com.habittracker.habit.repository;
 
-import com.habittracker.habit.model.Habit;
+import com.habittracker.habit.entity.Habit;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

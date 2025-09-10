@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: habit-app-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: habit-app
+  template:
+    metadata:
+      labels:
+        app: habit-app
+    spec:
+      containers:
+        - name: habit-app-container
+          image: your-dockerhub-username/habit-app:0.0.1
+          ports:
+            - containerPort: 8082
