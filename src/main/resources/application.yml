@@ -13,5 +13,8 @@ spring:
     host: localhost
     port: 6379
 
+jwt:
+  secret: "QkFTRTY0X1NUUklOR19GUk9NX0FCT1ZF"
+  expiration-ms: 32000
 server:
   port: 8082

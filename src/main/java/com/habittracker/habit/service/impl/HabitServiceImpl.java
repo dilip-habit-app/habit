@@ -26,7 +26,7 @@ public class HabitServiceImpl implements HabitService {
     private HabitProgressRepository progressRepository;
 
     @Override
-    public HabitResponse createHabit(HabitRequest request) {
+    public HabitResponse createHabit(HabitRequest request, Long userId) {
         Habit habit = new Habit();
         habit.setTitle(request.getTitle());
         habit.setDescription(request.getDescription());
@@ -40,7 +40,7 @@ public class HabitServiceImpl implements HabitService {
     }
 
     @Override
-    public HabitResponse getHabitById(Long id) {
+    public HabitResponse getHabitById(Long id, Long userId) {
         Habit habit = habitRepository.findById(id)
                 .orElseThrow(() -> new HabitNotFoundException("Habit not found with id: " + id));
         return mapToResponse(habit);
@@ -58,7 +58,7 @@ public class HabitServiceImpl implements HabitService {
         return habitRepository.findAll().stream().map(this::mapToResponse).collect(Collectors.toList());
     }
     @Override
-    public HabitResponse updateHabit(Long id, HabitRequest request) {
+    public HabitResponse updateHabit(Long id, HabitRequest request, Long userId) {
         Habit habit = habitRepository.findById(id)
                 .orElseThrow(() -> new HabitNotFoundException("Habit not found with id: " + id));
 
@@ -74,7 +74,7 @@ public class HabitServiceImpl implements HabitService {
     }
 
     @Override
-    public void deleteHabit(Long id) {
+    public void deleteHabit(Long id, Long userId) {
         if (!habitRepository.existsById(id)) {
             throw new HabitNotFoundException("Habit not found with id: " + id);
         }
@@ -82,7 +82,7 @@ public class HabitServiceImpl implements HabitService {
     }
 
     @Override
-    public HabitProgressResponse completeHabit(Long id) {
+    public HabitProgressResponse completeHabit(Long id, Long userId) {
         Habit habit = habitRepository.findById(id)
                 .orElseThrow(() -> new HabitNotFoundException("Habit not found with id: " + id));
 
@@ -100,7 +100,7 @@ public class HabitServiceImpl implements HabitService {
     }
 
     @Override
-    public HabitProgressResponse skipHabit(Long id) {
+    public HabitProgressResponse skipHabit(Long id, Long userId ) {
         Habit habit = habitRepository.findById(id)
                 .orElseThrow(() -> new HabitNotFoundException("Habit not found with id: " + id));
 
@@ -117,7 +117,7 @@ public class HabitServiceImpl implements HabitService {
     }
 
     @Override
-    public List<HabitProgressResponse> getHabitProgress(Long id) {
+    public List<HabitProgressResponse> getHabitProgress(Long id, Long userId) {
         return progressRepository.findByHabitId(id)
                 .stream().map(this::mapToProgressResponse)
                 .collect(Collectors.toList());

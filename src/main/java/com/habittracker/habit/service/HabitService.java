@@ -8,14 +8,14 @@ import java.util.List;
 
 public interface HabitService {
 
-    HabitResponse createHabit(HabitRequest request);
-    HabitResponse getHabitById(Long id);
+    HabitResponse createHabit(HabitRequest request, Long userId);
+    HabitResponse getHabitById(Long id, Long userId);
     List<HabitResponse> getHabitsByUser(Long userId);
-    HabitResponse updateHabit(Long id, HabitRequest request);
-    void deleteHabit(Long id);
-    HabitProgressResponse completeHabit(Long id);
-    HabitProgressResponse skipHabit(Long id);
-    List<HabitProgressResponse> getHabitProgress(Long id);
+    HabitResponse updateHabit(Long id, HabitRequest request, Long userId );
+    void deleteHabit(Long id, Long userId);
+    HabitProgressResponse completeHabit(Long id, Long userId);
+    HabitProgressResponse skipHabit(Long id, Long userId);
+    List<HabitProgressResponse> getHabitProgress(Long id, Long userId);
 
     List<HabitResponse> getAllHabits();
 }
